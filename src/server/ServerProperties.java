@@ -52,6 +52,7 @@ public class ServerProperties {
     }
 
     public static String getProperty(String s) {
+        System.out.println(s);
         return props.getProperty(s);
     }
 

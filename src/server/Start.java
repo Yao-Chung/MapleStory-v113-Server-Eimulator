@@ -26,12 +26,15 @@ import server.quest.MapleQuest;
 public class Start {
 
     public final static void main(final String args[]) {
+        System.out.println("1");
         if (Boolean.parseBoolean(ServerProperties.getProperty("tms.Admin"))) {
             System.out.println("[!!! 管理員模式 !!!]");
         }
+        System.out.println("2");
         if (Boolean.parseBoolean(ServerProperties.getProperty("tms.AutoRegister"))) {
             System.out.println("開啟註冊模式 :::");
         }
+        System.out.println("3");
         try {
             final PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("UPDATE accounts SET loggedin = 0");
             ps.executeUpdate();
@@ -39,7 +42,7 @@ public class Start {
         } catch (SQLException ex) {
             throw new RuntimeException("[EXCEPTION] Please check if the SQL server is active.");
         }
-
+        System.out.println("4");
         World.init();
         WorldTimer.getInstance().start();
         EtcTimer.getInstance().start();

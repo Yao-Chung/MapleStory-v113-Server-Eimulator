@@ -116,6 +116,7 @@ public class DatabaseConnection {
             props.put("password", ServerProperties.getProperty("tms.Pass"));
             props.put("autoReconnect", "true");
             final Connection con = DriverManager.getConnection(ServerProperties.getProperty("tms.Url"), props);
+            System.out.println("get connection success");
             return con;
         } catch (SQLException e) {
             System.err.println("ERROR" + e);

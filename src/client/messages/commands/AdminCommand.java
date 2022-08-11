@@ -87,7 +87,8 @@ import tools.Pair;
 import tools.StringUtil;
 import tools.packet.MobPacket;
 import tools.packet.PlayerShopPacket;
-import com.mysql.jdbc.Connection;
+// import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 import java.util.concurrent.ScheduledFuture;
 
 /**
