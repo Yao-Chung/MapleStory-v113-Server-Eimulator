@@ -17,7 +17,6 @@ public class WebSocketSession {
         InputStream ins = socket.getInputStream();
         ins.read(inBuff);
         String recvMessage = new String(inBuff, StandardCharsets.UTF_8);
-        System.out.println(recvMessage);
         Map<String, String> retMap = WebSocketUtil.parseHandShakeRequestHeader(recvMessage);
         String response = WebSocketUtil.buildHandShakeResponse(retMap);
 
@@ -29,11 +28,22 @@ public class WebSocketSession {
         // Close stream
         return (retMap.get("Status-Code") == "101") ? 0 : -1;
     }
-    public int send(String message) {
-        // TODO: build the data frame
+    public int send(String message) throws Exception {
+        OutputStream outs = socket.getOutputStream();
+        outs.write(WebSocketUtil.buildDataFrameHeader(message.getBytes(), 1));
+        outs.write(message.getBytes());
+        return 0;
+    }
+    public int send(byte[] message) throws Exception {
+        OutputStream outs = socket.getOutputStream();
+        outs.write(WebSocketUtil.buildDataFrameHeader(message, 2));
+        outs.write(message);
         return 0;
     }
     public void close() throws Exception {
+        OutputStream outs = socket.getOutputStream();
+        outs.write(new byte[]{(byte)0x88, (byte)0x00});
+        outs.close();
         socket.close();
     }
     public String recv() throws Exception {

@@ -16,7 +16,13 @@ public class test {
         }
         System.out.println("WebSocket Connection success.");
         while(true) {
-            System.out.println(webSession.recv());
+            String msg = webSession.recv();
+            if(msg.equals("close")) {
+                webSession.close();
+                break;
+            }else {
+                webSession.send(msg);
+            }
         }
     }
 }

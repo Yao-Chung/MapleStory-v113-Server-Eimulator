@@ -43,7 +43,6 @@ public class WebSocketUtil {
         Map<String, String> retMap = new HashMap<>();
         String[] lines = requestStr.split("\r\n", 0);
         for(int i=0; i<lines.length; i++) {
-            // System.out.println(lines[i]);
             if(i == 0) {
                 String[] startLine = lines[i].split(" ", 0);
                 retMap.put("Method", startLine[0]);
@@ -79,5 +78,12 @@ public class WebSocketUtil {
             retMap.put("Status-Code", "400");
         }
         return response;
+    }
+    public static byte[] buildDataFrameHeader(byte[] message, int opcode) throws Exception {
+        if(message.length > 125) {
+            throw new Exception("Unsupported payload length");
+        }
+        byte[] dataFrame = new byte[]{(byte)(0x80 | opcode), (byte)message.length};
+        return dataFrame;
     }
 }
