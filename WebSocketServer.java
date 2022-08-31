@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class WebSocketServer {
     private ServerSocket server;
-    private Map<Long, Thread> clientsThreadMap;
+    private Map<Long, WebSocketThread> clientsThreadMap;
 
     public WebSocketServer(int port) throws Exception {
         server = new ServerSocket(port);
@@ -24,11 +24,17 @@ public class WebSocketServer {
     }
     public void listen() throws Exception {
         Socket socket = server.accept();
-        WebSocketThread webSocketThread = new WebSocketThread(socket, clientsThreadMap);
-        Thread client = new Thread(webSocketThread);
-        webSocketThread.setThreadID(client.getId());
-        clientsThreadMap.put(client.getId(), client);
-        client.start();
+        WebSocketThread webSocketThread = new WebSocketThread(socket, this);
+        clientsThreadMap.put(webSocketThread.getId(), webSocketThread);
+        webSocketThread.start();
+    }
+    public void removeClientThread(Long threadID) {
+        clientsThreadMap.remove(threadID);
+    }
+    public void notifyToAllClients(String message) throws Exception {
+        for(Map.Entry<Long, WebSocketThread> entry: clientsThreadMap.entrySet()) {
+            entry.getValue().send(message);
+        }
     }
     public void close() throws Exception {
         server.close();

@@ -29,14 +29,14 @@ public class WebSocketSession {
         return (retMap.get("Status-Code") == "101") ? 0 : -1;
     }
     public int send(String message) throws Exception {
-        OutputStream outs = socket.getOutputStream();
-        outs.write(WebSocketUtil.buildDataFrameHeader(message.getBytes(), 1));
-        outs.write(message.getBytes());
-        return 0;
+        return send(message.getBytes(), 1);
     }
     public int send(byte[] message) throws Exception {
+        return send(message, 2);
+    }
+    private synchronized int send(byte[] message, int opcode) throws Exception {
         OutputStream outs = socket.getOutputStream();
-        outs.write(WebSocketUtil.buildDataFrameHeader(message, 2));
+        outs.write(WebSocketUtil.buildDataFrameHeader(message, opcode));
         outs.write(message);
         return 0;
     }
