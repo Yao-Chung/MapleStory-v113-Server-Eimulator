@@ -3,29 +3,24 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.net.Socket;
+import java.lang.Runtime;
 
 public class test {
     public static void main(String[] args) throws Exception {
-        WebSocketServer webServer = new WebSocketServer(9876);
-        while(true) {
-            webServer.listen();
-        }
-        // Socket socket = webServer.listen();
-        // System.out.println("get the socket of server");
-        // WebSocketSession webSession = new WebSocketSession(socket);
-        // if(webSession.connect() != 0) {
-        //     System.out.println("WebSocket Connection failed.");
-        //     return;
-        // }
-        // System.out.println("WebSocket Connection success.");
-        // while(true) {
-        //     String msg = webSession.recv();
-        //     if(msg.equals("close")) {
-        //         webSession.close();
-        //         break;
-        //     }else {
-        //         webSession.send(msg);
-        //     }
-        // }
+        WebSocketServer webServer1 = new WebSocketServer(9876);
+        WebSocketServer webServer2 = new WebSocketServer(9877);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                System.out.println("=== start to close connections ===");
+                webServer1.close();
+                webServer2.close();
+            }catch(Exception ex) {
+                System.out.println("Error occurs");
+            }
+        }));
+        webServer1.start();
+        webServer2.start();
+        webServer1.join();
+        webServer2.join();
     }
 }
