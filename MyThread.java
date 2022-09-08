@@ -3,9 +3,11 @@ import java.net.SocketException;
 import java.net.Socket;
 
 public class MyThread extends WebSocketThread {
+    private WebSocketServer server;
 
-    MyThread(Socket socket, WebSocketServer server) {
-        super(socket, server);
+    public MyThread(Socket socket, WebSocketServer server) {
+        super(socket);
+        this.server = server;
     }
 
     @Override

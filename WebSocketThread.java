@@ -3,12 +3,10 @@ import java.util.Map;
 import java.net.SocketException;
 
 public abstract class WebSocketThread extends Thread {
-    protected WebSocketServer server;
     protected WebSocketSession session;
 
-    WebSocketThread(Socket socket, WebSocketServer server) {
+    WebSocketThread(Socket socket) {
         session = new WebSocketSession(socket);
-        this.server = server;
     }
     public int send(String message) throws Exception {
         return session.send(message);
