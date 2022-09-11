@@ -5,7 +5,7 @@ import java.net.SocketException;
 public abstract class WebSocketThread extends Thread {
     protected WebSocketSession session;
 
-    WebSocketThread(Socket socket) {
+    protected WebSocketThread(Socket socket) {
         session = new WebSocketSession(socket);
     }
     public int send(String message) throws Exception {

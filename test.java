@@ -7,8 +7,9 @@ import java.lang.Runtime;
 
 public class test {
     public static void main(String[] args) throws Exception {
-        WebSocketServer webServer1 = new WebSocketServer(9876);
-        WebSocketServer webServer2 = new WebSocketServer(9877);
+        WebSocketServer webServer1 = new WebSocketServer(MyThread::new, 9876);
+        WebSocketServer webServer2 = new WebSocketServer(MyThread::new, 9877);
+
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 System.out.println("=== start to close connections ===");
