@@ -1,7 +1,13 @@
+package mapleserver;
+
 import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+
+import websocketserver.LoginThread;
+import websocketserver.WebSocketServer;
+
 import java.net.Socket;
 import java.lang.Runtime;
 

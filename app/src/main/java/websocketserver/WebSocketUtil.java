@@ -1,3 +1,5 @@
+package websocketserver;
+
 import java.util.Base64;
 import java.util.Map;
 import java.security.MessageDigest;

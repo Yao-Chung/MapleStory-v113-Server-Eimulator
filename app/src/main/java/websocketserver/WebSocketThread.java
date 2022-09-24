@@ -1,3 +1,5 @@
+package websocketserver;
+
 import java.net.Socket;
 import java.util.Map;
 import java.net.SocketException;
