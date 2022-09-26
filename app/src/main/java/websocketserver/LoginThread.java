@@ -1,10 +1,8 @@
-package websocketserver;
+package app.src.main.java.websocketserver;
 
-import java.lang.Thread;
-import java.net.SocketException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.net.Socket;
 
 public class LoginThread extends WebSocketThread{
     private WebSocketServer server;
@@ -47,6 +45,8 @@ public class LoginThread extends WebSocketThread{
             }
         }catch (Exception ex) {
             ex.printStackTrace();
+        } finally {
+            server.removeClientThread(getId());
         }
     }
 }

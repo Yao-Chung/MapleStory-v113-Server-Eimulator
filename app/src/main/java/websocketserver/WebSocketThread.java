@@ -1,8 +1,6 @@
-package websocketserver;
+package app.src.main.java.websocketserver;
 
 import java.net.Socket;
-import java.util.Map;
-import java.net.SocketException;
 
 public abstract class WebSocketThread extends Thread {
     protected WebSocketSession session;

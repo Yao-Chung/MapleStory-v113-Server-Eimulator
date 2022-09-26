@@ -26,5 +26,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'mapleserver.test'
+    mainClass = 'app.src.main.java.mapleserver.test'
 }

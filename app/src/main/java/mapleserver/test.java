@@ -1,15 +1,7 @@
-package mapleserver;
+package app.src.main.java.mapleserver;
 
-import java.security.MessageDigest;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-
-import websocketserver.LoginThread;
-import websocketserver.WebSocketServer;
-
-import java.net.Socket;
-import java.lang.Runtime;
+import app.src.main.java.websocketserver.LoginThread;
+import app.src.main.java.websocketserver.WebSocketServer;
 
 public class test {
     public static void main(String[] args) throws Exception {

@@ -1,21 +1,11 @@
-package websocketserver;
+package app.src.main.java.websocketserver;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.ClassNotFoundException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
+import java.net.SocketException;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BiFunction;
-import java.security.MessageDigest;
-import java.util.Base64;
-import java.lang.Thread;
-import java.util.Map;
-import java.net.SocketException;
 
 public class WebSocketServer extends Thread {
     private ServerSocket server;
