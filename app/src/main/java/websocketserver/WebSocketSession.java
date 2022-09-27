@@ -46,7 +46,7 @@ public class WebSocketSession {
         outs.close();
         socket.close();
     }
-    public String recv() throws Exception {
+    public byte[] recv() throws Exception {
         InputStream ins = socket.getInputStream();
         
         int[] finAndOp = WebSocketUtil.parseFinToOpcode(ins.read());
@@ -59,8 +59,9 @@ public class WebSocketSession {
         ins.read(payLoad, 0, payloadLen);
         
         WebSocketUtil.unmaskedPayLoad(payLoad, maskKey);
-        String message = new String(payLoad, StandardCharsets.UTF_8);
+        return payLoad;
+        // String message = new String(payLoad, StandardCharsets.UTF_8);
         
-        return message;
+        // return message;
     }
 }
