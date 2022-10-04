@@ -1,4 +1,4 @@
-package app.src.main.java.websocketserver;
+package websocket;
 
 import java.net.Socket;
 

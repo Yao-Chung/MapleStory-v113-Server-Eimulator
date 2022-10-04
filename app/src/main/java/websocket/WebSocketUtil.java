@@ -1,4 +1,4 @@
-package app.src.main.java.websocketserver;
+package websocket;
 
 import java.util.Base64;
 import java.util.Map;
