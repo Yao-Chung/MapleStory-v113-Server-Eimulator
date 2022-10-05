@@ -5,6 +5,8 @@ import java.net.Socket;
 public abstract class WebSocketThread extends Thread {
     protected WebSocketSession session;
 
+    protected WebSocketThread() {}
+    
     protected WebSocketThread(Socket socket) {
         session = new WebSocketSession(socket);
     }

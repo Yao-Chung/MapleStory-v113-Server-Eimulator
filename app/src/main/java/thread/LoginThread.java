@@ -1,9 +1,9 @@
-package app.src.main.java.thread;
+package thread;
 
-import app.src.main.java.handler.LoginHandler;
-import app.src.main.java.packet.Opcode;
-import app.src.main.java.websocketserver.WebSocketServer;
-import app.src.main.java.websocketserver.WebSocketThread;
+import handler.LoginHandler;
+import packet.Opcode;
+import websocket.WebSocketServer;
+import websocket.WebSocketThread;
 
 import java.net.Socket;
 import java.nio.ByteBuffer;

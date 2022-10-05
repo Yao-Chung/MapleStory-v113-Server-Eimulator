@@ -1,4 +1,4 @@
-package app.src.main.java.packet;
+package packet;
 
 public enum Opcode {
     
@@ -19,7 +19,7 @@ public enum Opcode {
             case 1:
                 return LOGIN;
             default:
-                throw new IllegalArgumentException("Opcode is currently not supported.");
+                throw new IllegalArgumentException(String.format("Opcode %d is currently not supported.", value));
         }
     }
 }
