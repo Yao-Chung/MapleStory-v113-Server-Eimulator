@@ -1,6 +1,5 @@
 package handler;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.ByteBuffer;
@@ -32,6 +31,7 @@ public class HandlerTest {
         byte result = bb.get();
         assertEquals(result, (byte)1);
     }
+
     @Test
     void testLoginFuncFail() throws Exception {
         String username = "Yao123456", password = "Hello123";
