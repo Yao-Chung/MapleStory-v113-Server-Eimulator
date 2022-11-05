@@ -17,6 +17,7 @@ public class WebSocketSession {
         InputStream ins = socket.getInputStream();
         ins.read(inBuff);
         String recvMessage = new String(inBuff, StandardCharsets.UTF_8);
+        System.err.println(recvMessage);
         Map<String, String> retMap = WebSocketUtil.parseHandShakeRequestHeader(recvMessage);
         String response = WebSocketUtil.buildHandShakeResponse(retMap);
 

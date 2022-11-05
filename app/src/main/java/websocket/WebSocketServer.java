@@ -1,5 +1,6 @@
 package websocket;
 
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -14,13 +15,14 @@ public class WebSocketServer extends Thread {
 
     public WebSocketServer(BiFunction<Socket, WebSocketServer, WebSocketThread> creater, int port) throws Exception {
         this.creater = creater;
-        server = new ServerSocket(port);
+        server = new ServerSocket(port, 20, InetAddress.getByName("0.0.0.0"));
         clientsThreadMap = new ConcurrentHashMap<>();
     }
     public void run() {
         try {
             while(true) {
                 Socket socket = server.accept();
+                System.err.println("accepted");
                 WebSocketThread webSocketThread = creater.apply(socket, this);
                 clientsThreadMap.put(webSocketThread.getId(), webSocketThread);
                 webSocketThread.start();
